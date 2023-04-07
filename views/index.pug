@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} Lab 10 by Rohit Mangipudi 
+  button(type="button", class="btn btn-danger" onclick = "doReduce()") Press Me
+  div#reduce Count #{count} with change #{change} 
+ 
+  script.
+    var count = 20;
+    var change = -1;
+    function doReduce(){
+      count = count + change;
+      change = change -1;
+      document.getElementById('reduce').textContent = `Count ${count} with change ${change}`;
+    }
+ 
