@@ -2,14 +2,16 @@ extends layout
 
 block content
   h1= title
-  - var results = fish;
-  div(class="container_fluid")
-    each item, index in results
-        div(class="row" onclick = `buy(${index})`)       
-            div(class="col-sm-2") #{item.fish_type}
-            div(class="col-sm-2") #{item.fish_name}
-            div(class="col-sm-2") #{item.fish_cost}
+  -let fish = results
+   div(class="container-fluid")
+    div(class="row")
+      each item,index in fish
+        div(class="col-sm-2",onClick=`buy(${index})`)
+          p fish_type:  #{item.fish_type}
+          p fish_name:  #{item.fish_name}
+          p fish_cost:  #{item.fish_cost}
   script.
-      function buy(indxnum){
-        alert('You purchased item'+ indxnum)
-      }
+    function buy(N) {
+      N=N+1;
+      alert('You purchased item '+N);
+    }
