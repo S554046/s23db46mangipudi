@@ -6,12 +6,18 @@ block content
    div(class="container-fluid")
     div(class="row")
       each item,index in fish
+       - let destination = `dispatch(\"/fish/update?id=${item._id}\")`
         div(class="col-sm-2",onClick=`buy(${index})`)
           p fish_type:  #{item.fish_type}
           p fish_name:  #{item.fish_name}
           p fish_cost:  #{item.fish_cost}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
     function buy(N) {
       N=N+1;
       alert('You purchased item '+N);
+    }
+  script.
+    function dispatch(path){
+    window.location.href=path
     }
