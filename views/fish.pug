@@ -3,15 +3,21 @@ extends layout
 block content
   h1= title
   -let fish = results
+   - let createpage = `dispatch(\"/Drink/create")`
+   button.btn( class="btn-primary ml-1", onclick= createpage) Create page
    div(class="container-fluid")
     div(class="row")
       each item,index in fish
        - let destination = `dispatch(\"/fish/update?id=${item._id}\")`
+       - let detailpage = `dispatch(\"/Drink/detail?id=${item._id}\")`
+       - let deletepage = `dispatch(\"/Drink/delete?id=${item._id}\")` 
         div(class="col-sm-2",onClick=`buy(${index})`)
           p fish_type:  #{item.fish_type}
           p fish_name:  #{item.fish_name}
           p fish_cost:  #{item.fish_cost}
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destination style='margin: 10px;') Update
+          button.btn( class="btn-primary ml-1", onclick= detailpage, style='margin: 10px;') Detail page
+          button.btn( class="btn-primary ml-1", onclick= deletepage, style='margin: 10px;') Delete page
   script.
     function buy(N) {
       N=N+1;
